@@ -1,0 +1,227 @@
+
+        .abs {
+        position: absolute; /* ឬ relative */
+        z-index: 1;        /* តម្លៃទាបជាង */
+        
+    }
+        /* CSS សម្រាប់ភាពស្រស់ស្អាត និង Responsive (រក្សាទុកធាតុសំខាន់ៗ) */
+        body {
+            background-color: #e9ecef;
+            font-family: 'Khmer OS Battambang', 'Arial', sans-serif;
+        }
+        .invoice-container {
+            max-width: 1000px;
+            margin: 30px auto;
+            padding: 30px;
+            border: none;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            background-color: #fff;
+        }
+        
+        /* Invoice View Styles */
+        #invoiceViewContainer {
+            display: none;
+            padding: 40px;
+            background-color: #fff;
+            border: none; 
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            min-height: 90vh;
+        }
+        .invoice-header-new h3 {
+            font-weight: 700;
+            color: #0d6efd;
+            font-size: 1.8rem;
+        }
+        .invoice-table-final th {
+            background-color: #0d6efd !important;
+            color: white;
+            font-weight: 600;
+            vertical-align: middle;
+        }
+        .hidden {
+        display: none; /* នេះជាវិធីដែលល្អបំផុតសម្រាប់ការលាក់ទាំងស្រុង */
+        }
+        /* CSS សម្រាប់ QR Code Placeholder */
+        .qr-code-final-placeholder {
+              width: 150px; 
+              height: 150px;
+              border: 1px solid #dee2e6;
+              padding: 5px;
+              display: inline-flex;
+              align-items: center;
+              justify-content: center;
+              border-radius: 6px;
+              background-color: #fff;
+        }
+        .qr-code-final-placeholder img {
+              max-width: 100px;
+              max-height: 100px;
+              object-fit: contain;
+              align-items: center;
+        }
+
+        .product-input-display {
+            width: 100%;
+            font-size: 18px;
+            line-height: 1.5;
+            text-align: center;
+            resize: none; 
+            border: none;
+            background-color: transparent;
+            padding: 0;
+            margin-top: 5px;
+            margin-bottom: 5px;
+            color: #6c757d;
+            font-weight: normal;
+            min-height: 10px;
+        }
+        
+        /* Invoice Footer Signature: ត្រូវបានកែសម្រួលដើម្បីប្រើ Flex/Grid */
+        .invoice-footer-final {
+            margin-top: 10px; 
+            padding-top: 10px;
+        }
+        
+        .signature-box {
+            text-align: center;
+        }
+
+        .signature-box .signature-label {
+            margin-top: 5px;
+            font-weight: bold;
+            font-size: 1rem;
+        }
+        .signature-box .signer-name {
+            display: block;
+            margin-top: 5px;
+            border-top: 1px solid #000;
+            width: 80%; /* កាត់បន្ថយទំហំខ្សែបន្ទាត់ */
+            margin-left: auto;
+            margin-right: auto;
+            padding-top: 5px;
+        }
+
+        /* ******************************************************** */
+        /* CSS សម្រាប់ QR Code ថ្មីនៅក្នុង Invoice View (80px x 80px) */
+        /* ******************************************************** */
+        .qr-code-invoice-view {
+            width: 150px;
+            height: 200px;
+            object-fit: contain;
+            border: 1px solid #dee2e6;
+            border-radius: 3px;
+            padding: 2px;
+            display: block; /* ធ្វើឲ្យវាជា block សម្រាប់ដាក់កណ្ដាល */
+            margin-left: auto; /* ដាក់នៅខាងស្តាំ */
+            margin-right: auto;
+        }
+        
+    
+
+        .date-box-seller {
+             margin-bottom: 5px;
+             font-size: 0.9rem;
+             text-align: right; 
+             padding-right: 10%;
+             margin-top: -30px; 
+        }
+         .signature-seller-col {
+             position: relative; 
+             display: flex;
+             flex-direction: column;
+             align-items: center;
+        }
+
+        /* Style ថ្មីដើម្បីដាក់ QR Code និង Invoice No. ក្នុងជួរតែមួយ */
+        .invoice-info-header {
+            display: flex;
+            justify-content: space-between; /* ចន្លោះរវាងឆ្វេងនិងស្តាំ */
+            align-items: flex-start; /* តម្រឹមពីលើ */
+        }
+        .invoice-details-left {
+            flex-grow: 1; /* យកទំហំដែលនៅសល់ */
+        }
+        .qr-code-right {
+             flex-shrink: 0; /* កុំឲ្យបង្រួម */
+             text-align: right;
+        }
+        
+        
+
+        /* Print Media Query */
+        @media print {
+            @page {
+                margin-top: 1.5cm;
+                margin-bottom: 1.5cm;
+                margin-left: 1.5cm;
+                margin-right: 1.5cm;
+            }
+            body * {
+                visibility: hidden;
+            }
+            #invoiceViewContainer, #invoiceViewContainer * {
+                visibility: visible;
+            }
+            #invoiceViewContainer {
+                position: absolute;
+                left: 0;
+                top: 0;
+                width: 100%;
+                padding: 0 !important;
+                box-shadow: none;
+                border: none;
+                margin: 0;
+            }
+            .no-print {
+                display: none !important; 
+            }
+            .signature-box .signer-name {
+                border-top: 1px solid #000;
+            }
+            .date-box-seller {
+                margin-top: -30px;
+            }
+            /* សម្រាប់ Print: ធានាថា QR Code ត្រឹមត្រូវ */
+            
+        }
+        
+        /* Mobile optimization */
+        @media (max-width: 768px) {
+            .invoice-container {
+                margin: 10px;
+                padding: 15px;
+                border-radius: 0;
+            }
+             .invoice-header-new .col-12.text-center-full {
+                flex: 0 0 100%;
+                max-width: 100%;
+                text-align: center !important;
+             }
+             /* ធ្វើឲ្យហត្ថលេខាត្រឡប់មកតម្រៀបចុះក្រោមវិញលើទូរស័ព្ទ */
+             .invoice-footer-final .col-md-6 {
+                 flex: 0 0 100%;
+                 max-width: 100%;
+                 margin-bottom: 20px;
+             }
+             .date-box-seller {
+                margin-top: 0; 
+                text-align: center;
+                padding-right: 0;
+            }
+            .signature-box {
+                text-align: center;
+                padding-top: 15px; 
+            }
+            /* លើទូរស័ព្ទ ដាក់ QR Code និង Invoice No តាមជួររៀងៗខ្លួន */
+            .invoice-info-header {
+                flex-direction: column;
+                align-items: center;
+            }
+           
+             .invoice-details-left {
+                text-align: center;
+            }
+        
+        }
+  
